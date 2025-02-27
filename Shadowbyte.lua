@@ -8,7 +8,7 @@ if game.PlaceId == 4483381587 then
     -- Function to check for updates from GitHub
     local function CheckForUpdate()
         local success, LatestVersion = pcall(function()
-            return game:HttpGet("https://raw.githubusercontent.com/glitchstikers/Testscript-/main/ShadowbyteVersion.lua") -- Ensure this file contains only the version string (e.g., "v1.1")
+            return game:HttpGet("https://raw.githubusercontent.com/glitchstikers/Testscript-/main/Version.lua") -- Ensure this file contains only the version string (e.g., "v1.1")
         end)
 
         if success and LatestVersion and LatestVersion ~= CurrentVersion then
