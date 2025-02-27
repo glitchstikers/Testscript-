@@ -1,28 +1,26 @@
 if game.PlaceId == 4483381587 then
     local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
-    -- About Names
-    local CurrentName = "🌑 Shadowbyte 🌑"
-    local CurrentGame = "a baseplate 🌐"
-    local CurrentVersion = "v1.0"
+    -- Information
+    local CurrentName, CurrentGame, CurrentVersion = "🌑 Shadowbyte 🌑", "a baseplate 🌐", "v1.0"
 
     -- Function to check for updates
     local function CheckForUpdate()
         local success, LatestVersion = pcall(function()
-            return game:HttpGet("https://raw.githubusercontent.com/glitchstikers/Testscript-/refs/heads/main/Shadowbyte.lua") -- Replace with actual URL
+            return game:HttpGet("https://raw.githubusercontent.com/glitchstikers/Testscript-/main/Shadowbyte.lua") -- Ensure this file contains only the version string (e.g., "v1.1")
         end)
 
         if success and LatestVersion and LatestVersion ~= CurrentVersion then
-            CurrentVersion = LatestVersion -- Auto-update version number
             Rayfield:Notify({
                 Title = "Update Available!",
-                Content = "New version (" .. LatestVersion .. ") detected. Restart for changes!",
+                Content = "New version detected (" .. LatestVersion .. "). Restart for changes!",
                 Duration = 8
             })
+            CurrentVersion = LatestVersion -- Auto-update version number
         end
     end
 
-    CheckForUpdate() -- Run update check at start
+    CheckForUpdate() -- Run update check on start
 
     -- Main UI Window
     local Window = Rayfield:CreateWindow({
@@ -39,9 +37,9 @@ if game.PlaceId == 4483381587 then
     HomeTab:CreateSection("Support")
     HomeTab:CreateParagraph({Title = "About Us", Content = "This is a test example script."})
     HomeTab:CreateSection("Disclaimer")
-    HomeTab:CreateParagraph({Title = "Warning ⚠️", Content = "This is an easy-to-use script. If you get kicked or banned, that’s **your responsibility**, not mine or my team’s."})
+    HomeTab:CreateParagraph({Title = "Warning ⚠️", Content = "If you get kicked or banned, that’s **your responsibility**, not mine or my team’s."})
 
     -- Auto Load & Save Configurations
-    pcall(Rayfield.LoadConfiguration, Rayfield)
-    local function AutoSave() pcall(Rayfield.SaveConfiguration, Rayfield) end
+    pcall(function() Rayfield:LoadConfiguration() end)
+    local function AutoSave() pcall(function() Rayfield:SaveConfiguration() end) end
 end
